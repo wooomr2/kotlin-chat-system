@@ -13,8 +13,8 @@ dependencyManagement {
 }
 
 dependencies {
+    implementation(project(":chat-domain"))
 //    implementation(project(":chat-api"))
-//    implementation(project(":chat-domain"))
 //    implementation(project(":chat-persistence"))
 //    implementation(project(":chat-websocket"))
 
