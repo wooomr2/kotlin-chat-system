@@ -6,7 +6,7 @@ rootProject.name = "chat-system"
 include(
     "chat-application",
     "chat-domain",
-//    "chat-persistence",
+    "chat-persistence",
 //    "chat-websocket",
 //    "chat-api"
 )

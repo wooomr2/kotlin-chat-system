@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
     scanBasePackages = [
         "com.chat.application",
         "com.chat.domain",
-//        "com.chat.persistence",
+        "com.chat.persistence",
 //        "com.chat.api",
 //        "com.chat.websocket"
     ]
