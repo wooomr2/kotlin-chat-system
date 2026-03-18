@@ -5,6 +5,7 @@ import com.chat.domain.dto.LoginRequest
 import com.chat.domain.dto.UserDto
 import com.chat.domain.model.User
 import com.chat.domain.service.UserService
+import com.chat.persistence.mapper.UserMapper
 import com.chat.persistence.repository.UserRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -16,7 +17,8 @@ import java.time.LocalDateTime
 @Service
 @Transactional
 class UserServiceImpl(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val userMapper: UserMapper,
 ) : UserService {
 
     override fun createUser(request: CreateUserRequest): UserDto {
@@ -31,7 +33,7 @@ class UserServiceImpl(
         )
 
         val savedUser = userRepository.save(user)
-        return userToDto(savedUser)
+        return userMapper.toDto(savedUser)
     }
 
     override fun login(request: LoginRequest): UserDto {
@@ -42,16 +44,16 @@ class UserServiceImpl(
             throw IllegalArgumentException("사용자를 찾을 수 없거나 비밀번호가 일치하지 않습니다.")
         }
 
-        return userToDto(user)
+        return userMapper.toDto(user)
     }
 
     override fun getUserById(userId: Long): UserDto {
         val user = userRepository.findById(userId).orElseThrow { IllegalArgumentException("사용자를 찾을 수 없습니다: $userId") }
-        return userToDto(user)
+        return userMapper.toDto(user)
     }
 
     override fun searchUsers(query: String, pageable: Pageable): Page<UserDto> {
-        return userRepository.searchUsers(query, pageable).map { userToDto(it) }
+        return userRepository.searchUsers(query, pageable).map { userMapper.toDto(it) }
     }
 
     override fun updateLastSeen(userId: Long): UserDto {
@@ -60,24 +62,11 @@ class UserServiceImpl(
         val now = LocalDateTime.now()
         userRepository.updateLastSeenAt(userId, now)
 
-        return userToDto(user.copy(lastSeenAt = now))
+        return userMapper.toDto(user.copy(lastSeenAt = now))
     }
 
     private fun hashPassword(password: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(password.toByteArray())
         return bytes.joinToString("") { "%02x".format(it) }
-    }
-
-    private fun userToDto(user: User): UserDto {
-        return UserDto(
-            id = user.id,
-            username = user.username,
-            displayName = user.displayName,
-            profileImageUrl = user.profileImageUrl,
-            status = user.status,
-            isActive = user.isActive,
-            lastSeenAt = user.lastSeenAt,
-            createdAt = user.createdAt
-        )
     }
 }
