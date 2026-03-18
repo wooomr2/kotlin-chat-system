@@ -40,7 +40,7 @@ class RedisConfig {
 
     @Bean
     fun redisMessageListenerContainer(connectionFactory: RedisConnectionFactory): RedisMessageListenerContainer {
-        RedisMessageListenerContainer().apply {
+        return RedisMessageListenerContainer().apply {
             setConnectionFactory(connectionFactory)
             setTaskExecutor(Executors.newCachedThreadPool { runnable ->
                 Thread(runnable).apply {

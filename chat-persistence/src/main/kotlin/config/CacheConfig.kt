@@ -18,7 +18,7 @@ import java.time.Duration
 @Configuration
 @EnableCaching
 class CacheConfig {
-    z
+
     @Bean
     fun cacheManager(connectionFactory: RedisConnectionFactory): CacheManager {
         val objectMapper = ObjectMapper().apply {
