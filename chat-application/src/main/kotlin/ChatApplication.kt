@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
         "com.chat.domain",
         "com.chat.persistence",
         "com.chat.websocket",
-//        "com.chat.api",
+        "com.chat.api",
     ]
 )
 @EnableJpaAuditing

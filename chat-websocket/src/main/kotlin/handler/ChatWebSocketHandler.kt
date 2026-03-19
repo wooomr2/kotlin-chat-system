@@ -14,7 +14,6 @@ import org.springframework.web.socket.*
 @Component
 class ChatWebSocketHandler(
     private val sessionManager: WebSocketSessionManager,
-//    private val messageService: WebSocketMessageService,
     private val chatService: ChatService,
     private val objectMapper: ObjectMapper,
 ) : WebSocketHandler {
@@ -135,7 +134,8 @@ class ChatWebSocketHandler(
                         type = MessageType.valueOf(messageTypeText),
                         content = content
                     )
-                    //TODO::
+
+                    chatService.sendMessage(sendMessageRequest, userId)
                 }
 
                 else -> {
