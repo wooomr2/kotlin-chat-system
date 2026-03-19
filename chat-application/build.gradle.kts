@@ -14,9 +14,9 @@ dependencyManagement {
 
 dependencies {
     implementation(project(":chat-domain"))
+    implementation(project(":chat-persistence"))
+    implementation(project(":chat-websocket"))
 //    implementation(project(":chat-api"))
-//    implementation(project(":chat-persistence"))
-//    implementation(project(":chat-websocket"))
 
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
