@@ -59,7 +59,7 @@ class ChatWebSocketHandler(
 
     override fun handleTransportError(
         session: WebSocketSession,
-        exception: Throwable?
+        exception: Throwable
     ) {
         val userId = getUserIdFromSession(session)
 
@@ -77,7 +77,7 @@ class ChatWebSocketHandler(
 
     override fun afterConnectionClosed(
         session: WebSocketSession,
-        closeStatus: CloseStatus?
+        closeStatus: CloseStatus
     ) {
         val userId = getUserIdFromSession(session)
         if (userId != null) {
