@@ -15,7 +15,7 @@ class ChatRoomMapper(
     private val chatRoomMemberRepository: ChatRoomMemberRepository,
 ) {
 
-    @Cacheable(value = ["chatRooms"], key = "#chatRoom.id")
+//    @Cacheable(value = ["chatRooms"], key = "#chatRoom.id")
     fun toDtoAndCacheable(chatRoom: ChatRoom): ChatRoomDto {
         val memberCount = chatRoomMemberRepository.countActiveMembersInRoom(chatRoom.id).toInt()
         val lastMessage = messageRepository.findLatestMessage(chatRoom.id)?.let { messageMapper.toDto(it) }

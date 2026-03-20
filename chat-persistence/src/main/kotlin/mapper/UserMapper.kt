@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Component
 class UserMapper {
 
-    @Cacheable(value = ["users"], key = "#user.id")
+//    @Cacheable(value = ["users"], key = "#user.id")
     fun toDtoAndCacheable(user: User): UserDto {
         return UserDto(
             id = user.id,
