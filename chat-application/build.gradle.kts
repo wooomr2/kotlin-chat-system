@@ -26,3 +26,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("com.h2database:h2")
 }
+
+// plain JAR 생성 비활성화 → bootJar(fat JAR)만 생성되도록 설정
+//tasks.jar {
+//    enabled = false
+//}
+
