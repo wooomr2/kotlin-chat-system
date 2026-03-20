@@ -13,9 +13,9 @@ class WebSocketHandShakeInterceptor : HandshakeInterceptor {
     private val logger = LoggerFactory.getLogger(WebSocketHandler::class.java)
 
     override fun beforeHandshake(
-        request: ServerHttpRequest?,
-        response: ServerHttpResponse?,
-        wsHandler: WebSocketHandler?,
+        request: ServerHttpRequest,
+        response: ServerHttpResponse,
+        wsHandler: WebSocketHandler,
         attributes: MutableMap<String?, Any?>
     ): Boolean {
         try {
@@ -35,9 +35,9 @@ class WebSocketHandShakeInterceptor : HandshakeInterceptor {
     }
 
     override fun afterHandshake(
-        request: ServerHttpRequest?,
-        response: ServerHttpResponse?,
-        wsHandler: WebSocketHandler?,
+        request: ServerHttpRequest,
+        response: ServerHttpResponse,
+        wsHandler: WebSocketHandler,
         exception: Exception?
     ) {
         if (exception != null) {
